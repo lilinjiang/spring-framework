@@ -91,25 +91,32 @@ public class XmlValidationModeDetector {
 		// Peek into the file to look for DOCTYPE.
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 		try {
+			// 是否为 DTD 校验模式。默认为，非 DTD 模式，即 XSD 模式
 			boolean isDtdValidated = false;
 			String content;
+			// <0> 循环，逐行读取 XML 文件的内容
 			while ((content = reader.readLine()) != null) {
 				content = consumeCommentTokens(content);
+				// 跳过，如果是注释，或者
 				if (this.inComment || !StringUtils.hasText(content)) {
 					continue;
 				}
+				// <1> 包含 DOCTYPE 为 DTD 模式
 				if (hasDoctype(content)) {
 					isDtdValidated = true;
 					break;
 				}
+				// <2>  hasOpeningTag 方法会校验，如果这一行有 < ，并且 < 后面跟着的是字母，则返回 true 。
 				if (hasOpeningTag(content)) {
 					// End of meaningful data...
 					break;
 				}
 			}
+			// 返回 VALIDATION_DTD or VALIDATION_XSD 模式
 			return (isDtdValidated ? VALIDATION_DTD : VALIDATION_XSD);
 		}
 		catch (CharConversionException ex) {
+			// <3> 返回 VALIDATION_AUTO 模式
 			// Choked on some character encoding...
 			// Leave the decision up to the caller.
 			return VALIDATION_AUTO;
@@ -142,6 +149,8 @@ public class XmlValidationModeDetector {
 	}
 
 	/**
+	 * 使用给定字符串中的所有前导注释数据并返回其余内容，这些内容可能为空，因为提供的内容可能是所有注释数据。
+	 * 出于我们的目的，仅在一行上去除前导注释内容很重要，因为第一条非注释内容将是 DOCTYPE 声明或文档的根元素。
 	 * Consumes all the leading comment data in the given String and returns the remaining content, which
 	 * may be empty since the supplied content might be all comment data. For our purposes it is only important
 	 * to strip leading comment content on a line since the first piece of non comment content will be either

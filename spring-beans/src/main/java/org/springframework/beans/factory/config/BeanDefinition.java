@@ -22,6 +22,7 @@ import org.springframework.core.AttributeAccessor;
 import org.springframework.lang.Nullable;
 
 /**
+ * 是一个接口，它描述了一个 Bean 实例的定义，包括属性值、构造方法值和继承自它的类的更多信息。
  * A BeanDefinition describes a bean instance, which has property values,
  * constructor argument values, and further information supplied by
  * concrete implementations.
