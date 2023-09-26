@@ -81,6 +81,8 @@ public abstract class MethodOverride implements BeanMetadataElement {
 	}
 
 	/**
+	 * 设置此元数据元素的配置源 Object 。
+	 * 对象的确切类型将取决于所使用的配置机制
 	 * Set the configuration source {@code Object} for this metadata element.
 	 * <p>The exact type of the object will depend on the configuration mechanism used.
 	 */

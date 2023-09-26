@@ -49,6 +49,7 @@ public interface InstantiationStrategy {
 			throws BeansException;
 
 	/**
+	 * 构造函数实例化
 	 * Return an instance of the bean with the given name in this factory,
 	 * creating it via the given constructor.
 	 * @param bd the bean definition
@@ -65,6 +66,7 @@ public interface InstantiationStrategy {
 			Constructor<?> ctor, Object... args) throws BeansException;
 
 	/**
+	 * 工厂方法实例化
 	 * Return an instance of the bean with the given name in this factory,
 	 * creating it via the given factory method.
 	 * @param bd the bean definition

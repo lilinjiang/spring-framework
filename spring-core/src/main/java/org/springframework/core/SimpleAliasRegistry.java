@@ -30,6 +30,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
 /**
+ * 接口的 AliasRegistry 简单实现。用作实现的 org.springframework.beans.factory.support.BeanDefinitionRegistry 基类。
  * Simple implementation of the {@link AliasRegistry} interface.
  * Serves as base class for
  * {@link org.springframework.beans.factory.support.BeanDefinitionRegistry}

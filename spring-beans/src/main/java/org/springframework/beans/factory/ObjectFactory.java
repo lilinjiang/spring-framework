@@ -19,6 +19,10 @@ package org.springframework.beans.factory;
 import org.springframework.beans.BeansException;
 
 /**
+ * 定义一个工厂，该工厂可以在调用时返回 Object 实例（可能是共享的或独立的）。
+ * 此接口通常用于封装泛型工厂，该工厂在每次调用时返回某个目标对象的新实例（原型）。
+ * 这个接口类似于 FactoryBean，但后者的实现通常意味着被定义为 中的 BeanFactorySPI 实例，而此类的实现通常意味着作为 API 提供给其他 bean（通过注入）。因此，该方法 getObject() 具有不同的异常处理行为。
+ * <p>
  * Defines a factory which can return an Object instance
  * (possibly shared or independent) when invoked.
  *

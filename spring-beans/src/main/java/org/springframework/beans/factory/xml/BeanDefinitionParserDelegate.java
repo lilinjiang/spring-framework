@@ -407,6 +407,7 @@ public class BeanDefinitionParserDelegate {
 	}
 
 	/**
+	 * 几乎所有标签都在这里 解析的
 	 * 进行 <bean> 元素解析
 	 * Parses the supplied {@code <bean>} element. May return {@code null}
 	 * if there were errors during parse. Errors are reported to the
@@ -656,6 +657,7 @@ public class BeanDefinitionParserDelegate {
 		if (ele.hasAttribute(FACTORY_METHOD_ATTRIBUTE)) {
 			bd.setFactoryMethodName(ele.getAttribute(FACTORY_METHOD_ATTRIBUTE));
 		}
+		// 解析工厂 bean
 		if (ele.hasAttribute(FACTORY_BEAN_ATTRIBUTE)) {
 			bd.setFactoryBeanName(ele.getAttribute(FACTORY_BEAN_ATTRIBUTE));
 		}

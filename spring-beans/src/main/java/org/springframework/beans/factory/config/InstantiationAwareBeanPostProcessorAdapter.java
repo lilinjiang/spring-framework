@@ -24,6 +24,7 @@ import org.springframework.beans.PropertyValues;
 import org.springframework.lang.Nullable;
 
 /**
+ * 实例化感知 Bean 后处理器适配器
  * Adapter that implements all methods on {@link SmartInstantiationAwareBeanPostProcessor}
  * as no-ops, which will not change normal processing of each bean instantiated
  * by the container. Subclasses may override merely those methods that they are

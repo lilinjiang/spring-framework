@@ -563,6 +563,9 @@ public abstract class ReflectionUtils {
 	}
 
 	/**
+	 *
+	 * 对给定类和超类（或给定接口和超接口）的所有匹配方法执行给定的回调操作。
+	 * 子类和超类上出现的相同命名方法将出现两次，除非被指定的 ReflectionUtils.MethodFilter.
 	 * Perform the given callback operation on all matching methods of the given
 	 * class and superclasses (or given interface and super-interfaces).
 	 * <p>The same named method occurring on subclass and superclass will appear

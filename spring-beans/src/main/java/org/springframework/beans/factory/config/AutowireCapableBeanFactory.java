@@ -26,6 +26,8 @@ import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 自动装配能力
+ *
  * Extension of the {@link org.springframework.beans.factory.BeanFactory}
  * interface to be implemented by bean factories that are capable of
  * autowiring, provided that they want to expose this functionality for
@@ -89,6 +91,7 @@ public interface AutowireCapableBeanFactory extends BeanFactory {
 	int AUTOWIRE_BY_TYPE = 2;
 
 	/**
+	 * 指示自动连接可以满足的最贪婪的构造函数的常量（涉及解析相应的构造函数）。
 	 * Constant that indicates autowiring the greediest constructor that
 	 * can be satisfied (involves resolving the appropriate constructor).
 	 * @see #createBean

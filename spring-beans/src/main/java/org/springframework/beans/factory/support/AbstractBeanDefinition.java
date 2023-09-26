@@ -552,6 +552,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	 * @see #AUTOWIRE_BY_TYPE
 	 */
 	public int getResolvedAutowireMode() {
+		// 自动检测模式，获得对应的检测模式
 		if (this.autowireMode == AUTOWIRE_AUTODETECT) {
 			// Work out whether to apply setter autowiring or constructor autowiring.
 			// If it has a no-arg constructor it's deemed to be setter autowiring,
@@ -747,6 +748,8 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * true 宽松
+	 * 返回是在宽松模式下还是在严格模式下解析构造函数。
 	 * Return whether to resolve constructors in lenient mode or in strict mode.
 	 */
 	public boolean isLenientConstructorResolution() {
@@ -954,6 +957,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 返回此 Bean 定义是否为“合成”，即不是由应用程序本身定义的。
 	 * Return whether this bean definition is 'synthetic', that is,
 	 * not defined by the application itself.
 	 */
@@ -1075,6 +1079,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 			Set<MethodOverride> overrides = getMethodOverrides().getOverrides();
 			synchronized (overrides) {
 				for (MethodOverride mo : overrides) {
+					// 循环，执行 prepareMethodOverride
 					prepareMethodOverride(mo);
 				}
 			}

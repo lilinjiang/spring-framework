@@ -60,6 +60,7 @@ public interface RequestAttributes {
 
 
 	/**
+	 * 返回给定名称的作用域属性的值（如果有）
 	 * Return the value for the scoped attribute of the given name, if any.
 	 * @param name the name of the attribute
 	 * @param scope the scope identifier

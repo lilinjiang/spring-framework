@@ -126,6 +126,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// then ultimately reset this.delegate back to its original (parent) reference.
 		// this behavior emulates a stack of delegates without actually necessitating one.
 		// 记录老的 BeanDefinitionParserDelegate 对象
+		// 启东时首次调用该方法时 parent = null
 		BeanDefinitionParserDelegate parent = this.delegate;
 		// <1> 创建 BeanDefinitionParserDelegate 对象，并进行设置到 delegate
 		this.delegate = createDelegate(getReaderContext(), root, parent);
@@ -199,18 +200,19 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	}
 
 	private void parseDefaultElement(Element ele, BeanDefinitionParserDelegate delegate) {
-		// import 标签解析
+		// import 标签解析  如:<import resource="spring-student.xml"/>
 		if (delegate.nodeNameEquals(ele, IMPORT_ELEMENT)) {
 			importBeanDefinitionResource(ele);
 		}
-		//
+		// alias 标签解析 如: <alias name="resourceHolder" alias="resourceHolder1"/>
 		else if (delegate.nodeNameEquals(ele, ALIAS_ELEMENT)) {
 			processAliasRegistration(ele);
 		}
-		// bean 标签解析
+		// bean 标签解析 todo 重点
 		else if (delegate.nodeNameEquals(ele, BEAN_ELEMENT)) {
 			processBeanDefinition(ele, delegate);
 		}
+		// beans 标签
 		else if (delegate.nodeNameEquals(ele, NESTED_BEANS_ELEMENT)) {
 			// recurse
 			doRegisterBeanDefinitions(ele);
@@ -330,6 +332,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	}
 
 	/**
+	 * todo 重点
 	 * bean 标签解析
 	 * Process the given bean element, parsing the bean definition
 	 * and registering it with the registry.

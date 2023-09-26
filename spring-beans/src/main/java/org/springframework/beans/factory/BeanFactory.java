@@ -21,12 +21,20 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * 用于访问 Spring Bean 容器的根接口。这是 Bean 容器的基本客户端视图;
+ * 其他接口，例如 ListableBeanFactory 和 org.springframework.beans.factory.config.ConfigurableBeanFactory 可用于特定目的。
  * The root interface for accessing a Spring bean container.
  * This is the basic client view of a bean container;
  * further interfaces such as {@link ListableBeanFactory} and
  * {@link org.springframework.beans.factory.config.ConfigurableBeanFactory}
  * are available for specific purposes.
  *
+ *
+ * 此接口由保存许多 Bean 定义的对象实现，
+ * 每个定义都由 String 名称唯一标识。
+ * 根据 Bean 定义，工厂将返回包含对象的独立实例（原型设计模式）或单个共享实例（单例设计模式的优越替代方案，其中实例是工厂范围内的单例）。
+ * 返回哪种类型的实例取决于 Bean 工厂配置：API 是相同的。
+ * 从Spring 2.0开始，根据具体的应用程序上下文（例如Web环境中的“request”和“session”范围），可以使用更多范围
  * <p>This interface is implemented by objects that hold a number of bean definitions,
  * each uniquely identified by a String name. Depending on the bean definition,
  * the factory will return either an independent instance of a contained object

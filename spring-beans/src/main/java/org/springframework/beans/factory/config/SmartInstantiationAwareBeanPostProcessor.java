@@ -22,6 +22,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 接口的 InstantiationAwareBeanPostProcessor 扩展，添加用于预测已处理 Bean 的最终类型的回调。
+ * 注意： 此接口是一个专用接口，主要用于框架内部使用。通常，应用程序提供的后处理器应该简单地实现纯 BeanPostProcessor 接口或从类派生。
+ * InstantiationAwareBeanPostProcessorAdapter 即使在单点版本中，也可能向此接口添加新方法。
+ * <p>
  * Extension of the {@link InstantiationAwareBeanPostProcessor} interface,
  * adding a callback for predicting the eventual type of a processed bean.
  *
@@ -52,6 +56,8 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	}
 
 	/**
+	 * 确定要用于给定 Bean 的候选构造函数。
+	 * 默认实现返回 null。
 	 * Determine the candidate constructors to use for the given bean.
 	 * <p>The default implementation returns {@code null}.
 	 * @param beanClass the raw class of the bean (never {@code null})
@@ -67,6 +73,7 @@ public interface SmartInstantiationAwareBeanPostProcessor extends InstantiationA
 	}
 
 	/**
+	 * 取引用以便提前访问指定的 Bean，通常用于解析循环引用。
 	 * Obtain a reference for early access to the specified bean,
 	 * typically for the purpose of resolving a circular reference.
 	 * <p>This callback gives post-processors a chance to expose a wrapper
