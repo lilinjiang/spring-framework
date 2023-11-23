@@ -71,6 +71,7 @@ import org.springframework.util.StringUtils;
 public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
 
 	/**
+	 * 一级
 	 * 单例对象的缓存：Bean 实例的 Bean 名称。
 	 *  Cache of singleton objects: bean name to bean instance.
 	 *  存放的是单例 bean 的映射。
@@ -79,6 +80,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
 	/**
+	 * 三级缓存
 	 * 单例工厂的缓存：ObjectFactory 的 Bean 名称。
 	 * Cache of singleton factories: bean name to ObjectFactory.
 	 * 存放的是 ObjectFactory，可以理解为创建单例 bean 的 factory 。
@@ -87,6 +89,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
 
 	/**
+	 * 二级
 	 * Cache of early singleton objects: bean name to bean instance.
 	 * 存放的是【早期】的单例 bean 的映射。
 	 * 对应关系也是 bean name --> bean instance。
@@ -445,7 +448,10 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 	}
 
 	/**
-	 * dependentBeanName 依赖 beanName
+	 * 为给定的 Bean 注册一个依赖的 bean，在给定的 bean 被销毁之前销毁。
+	 *
+	 * dependentBeanName 依赖于 beanName
+	 * beanName 被 dependentBeanName 所依赖（需要）
 	 * Register a dependent bean for the given bean,
 	 * to be destroyed before the given bean is destroyed.
 	 * @param beanName the name of the bean
@@ -459,6 +465,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 			Set<String> dependentBeans =
 					this.dependentBeanMap.computeIfAbsent(canonicalName, k -> new LinkedHashSet<>(8));
 			// dependentBeans 依赖与 beanName
+			// 他们（dependentBeans）需要（依赖）我（canonicalName（beanName））
 			if (!dependentBeans.add(dependentBeanName)) {
 				return;
 			}
@@ -467,7 +474,8 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 		synchronized (this.dependenciesForBeanMap) {
 			Set<String> dependenciesForBean =
 					this.dependenciesForBeanMap.computeIfAbsent(dependentBeanName, k -> new LinkedHashSet<>(8));
-			// dependenciesForBean 是 dependentBeanName 所依赖的
+			// dependenciesForBean 是 dependentBeanName 所依赖的  == dependentBeanName 依赖 canonicalName（beanName）
+			// 我（dependentBeanName）需要（依赖）他们（dependenciesForBean）
 			dependenciesForBean.add(canonicalName);
 		}
 	}

@@ -134,6 +134,8 @@ public class XmlBeanFactoryTests {
 		DefaultListableBeanFactory factory = new DefaultListableBeanFactory(); // <2>
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory); // <3>
 		reader.loadBeanDefinitions(resource); // <4>
+		TestBean bean = factory.getBean("bean",TestBean.class);
+		System.out.println("bean:...."+bean);
 	}
 
 	/* SPR-2368 */

@@ -282,6 +282,7 @@ class BeanDefinitionValueResolver {
 	}
 
 	/**
+	 * 解析内部 Bean 定义
 	 * Resolve an inner bean definition.
 	 * @param argName the name of the argument that the inner bean is defined for
 	 * @param innerBeanName the name of the inner bean

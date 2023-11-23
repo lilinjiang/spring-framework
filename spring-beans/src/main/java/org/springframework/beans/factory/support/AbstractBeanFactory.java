@@ -335,17 +335,18 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// depends-on 属性的循环依赖处理 todo dependsOn 跟常说的Spring Bean 循环依赖不一回事
 				// Guarantee initialization of beans that the current bean depends on.
-				// <7> 处理所依赖的 bean
+				// <7> 处理所依赖的 bean 返回该Bean所依赖的Bean名称。
 				String[] dependsOn = mbd.getDependsOn();
 				if (dependsOn != null) {
 					for (String dep : dependsOn) {
-						// 若给定的依赖 bean 已经注册为依赖给定的 bean
+						// 若给定的依赖 bean 已经注册为依赖给定的 bean （循环依赖）
 						// 即循环依赖的情况，抛出 BeanCreationException 异常
 						if (isDependent(beanName, dep)) {
 							throw new BeanCreationException(mbd.getResourceDescription(), beanName,
 									"Circular depends-on relationship between '" + beanName + "' and '" + dep + "'");
 						}
 						// 缓存依赖调用 beanName 依赖 dep
+						// 注册依赖Bean 关系
 						registerDependentBean(dep, beanName);
 						try {
 							// 递归处理依赖 Bean

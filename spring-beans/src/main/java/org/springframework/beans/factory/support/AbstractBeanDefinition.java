@@ -603,6 +603,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 返回该Bean所依赖的Bean名称。
 	 * Return the bean names that this bean depends on.
 	 */
 	@Override
@@ -831,6 +832,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * todo 这个地方
 	 * Return property values for this bean (never {@code null}).
 	 */
 	@Override
@@ -842,6 +844,7 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * todo 这个地方2
 	 * Return if there are property values values defined for this bean.
 	 * @since 5.0.2
 	 */

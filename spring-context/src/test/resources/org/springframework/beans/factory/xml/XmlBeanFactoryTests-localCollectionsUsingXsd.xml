@@ -31,6 +31,8 @@
 		<property name="someSet">
 			<ref bean="set"/>
 		</property>
+<!--		自己后加的-->
+		<property name="age" value="10"></property>
 	</bean>
 
 </beans>
