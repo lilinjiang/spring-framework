@@ -70,6 +70,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	public ConfigurableConversionService getConversionService() {
 		// Need to provide an independent DefaultConversionService, not the
 		// shared DefaultConversionService used by PropertySourcesPropertyResolver.
+		// 需要提供独立的DefaultConversionService，而不是PropertySourcesPropertyResolver 使用的共享DefaultConversionService。
 		ConfigurableConversionService cs = this.conversionService;
 		if (cs == null) {
 			synchronized (this) {
@@ -215,6 +216,9 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 	}
 
 	/**
+	 * 用于解析给定字符串中的占位符，
+	 * 同时根据 ignoreUnresolvableNestedPlaceholders 的值，来确定是否对不可解析的占位符的处理方法：
+	 * 是忽略还是抛出异常（该值由 #setIgnoreUnresolvableNestedPlaceholders(boolean ignoreUnresolvableNestedPlaceholders) 方法来设置）。
 	 * Resolve placeholders within the given string, deferring to the value of
 	 * {@link #setIgnoreUnresolvableNestedPlaceholders} to determine whether any
 	 * unresolvable placeholders should raise an exception or be ignored.
@@ -236,6 +240,10 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 				this.valueSeparator, ignoreUnresolvablePlaceholders);
 	}
 
+	/**
+	 * String 类型的 text：待解析的字符串
+	 *  PropertyPlaceholderHelper 类型的 helper：用于解析占位符的工具类。
+	 */
 	private String doResolvePlaceholders(String text, PropertyPlaceholderHelper helper) {
 		return helper.replacePlaceholders(text, this::getPropertyAsRawString);
 	}
@@ -263,6 +271,7 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 			}
 			conversionServiceToUse = DefaultConversionService.getSharedInstance();
 		}
+		// 执行转换
 		return conversionServiceToUse.convert(value, targetType);
 	}
 

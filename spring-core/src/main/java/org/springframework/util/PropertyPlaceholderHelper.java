@@ -28,6 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.lang.Nullable;
 
 /**
+ * PropertyPlaceholderHelper 是用于处理包含占位符值的字符串
  * Utility class for working with Strings that have placeholder values in them. A placeholder takes the form
  * {@code ${name}}. Using {@code PropertyPlaceholderHelper} these placeholders can be substituted for
  * user-supplied values. <p> Values for substitution can be supplied using a {@link Properties} instance or
@@ -78,7 +79,7 @@ public class PropertyPlaceholderHelper {
 	 * @param placeholderSuffix the suffix that denotes the end of a placeholder
 	 * @param valueSeparator the separating character between the placeholder variable
 	 * and the associated default value, if any
-	 * @param ignoreUnresolvablePlaceholders indicates whether unresolvable placeholders should
+	 * @param ignoreUnresolvablePlaceholders indicates whether unresolvable placeholders should 指示是否忽略不可解析的占位符（true）或抛出异常（false）。
 	 * be ignored ({@code true}) or cause an exception ({@code false})
 	 */
 	public PropertyPlaceholderHelper(String placeholderPrefix, String placeholderSuffix,

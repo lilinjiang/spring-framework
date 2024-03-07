@@ -34,6 +34,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 /**
+ * 实现了 ConfigurableEnvironment 接口，默认属性和存储容器的定义，并且实现了 ConfigurableEnvironment 的方法，并且为子类预留可覆盖了扩展方法
  * Abstract base class for {@link Environment} implementations. Supports the notion of
  * reserved default profile names and enables specifying active and default profiles
  * through the {@link #ACTIVE_PROFILES_PROPERTY_NAME} and
@@ -234,9 +235,13 @@ public abstract class AbstractEnvironment implements ConfigurableEnvironment {
 	 */
 	protected Set<String> doGetActiveProfiles() {
 		synchronized (this.activeProfiles) {
+			// 如果 activeProfiles 为空，则进行初始化
+
 			if (this.activeProfiles.isEmpty()) {
+				// 获得 ACTIVE_PROFILES_PROPERTY_NAME 对应的 profiles 属性值
 				String profiles = getProperty(ACTIVE_PROFILES_PROPERTY_NAME);
 				if (StringUtils.hasText(profiles)) {
+					// 设置到 activeProfiles 中
 					setActiveProfiles(StringUtils.commaDelimitedListToStringArray(
 							StringUtils.trimAllWhitespace(profiles)));
 				}
