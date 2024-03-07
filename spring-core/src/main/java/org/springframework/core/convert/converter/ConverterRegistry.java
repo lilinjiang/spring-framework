@@ -17,6 +17,8 @@
 package org.springframework.core.convert.converter;
 
 /**
+ *
+ * 提供了类型转换器的管理功能，他提供了四个 add 和一个 remove 方法，支持注册/删除相应的类型转换器。
  * For registering converters with a type conversion system.
  *
  * @author Keith Donald

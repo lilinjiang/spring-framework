@@ -17,6 +17,9 @@
 package org.springframework.core;
 
 /**
+ *
+ * 通过装饰代理实现的接口，特别是 Spring AOP 代理，但也可能使用装饰器语义自定义代理。
+ * 请注意，如果修饰类一开始就不在代理类的层次结构中，则应仅实现此接口。特别是，“目标类”代理（例如Spring AOP CGLIB代理）不应实现它，因为无论如何都可以简单地在代理类上执行对目标类的任何查找。
  * Interface to be implemented by decorating proxies, in particular Spring AOP
  * proxies but potentially also custom proxies with decorator semantics.
  *
@@ -37,6 +40,7 @@ package org.springframework.core;
 public interface DecoratingProxy {
 
 	/**
+	 * 回此代理后面的（终极）修饰类。
 	 * Return the (ultimate) decorated class behind this proxy.
 	 * <p>In case of an AOP proxy, this will be the ultimate target class,
 	 * not just the immediate target (in case of multiple nested proxies).

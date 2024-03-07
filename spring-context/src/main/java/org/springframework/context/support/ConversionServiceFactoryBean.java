@@ -27,6 +27,10 @@ import org.springframework.core.convert.support.GenericConversionService;
 import org.springframework.lang.Nullable;
 
 /**
+ * 一个工厂，提供对 ConversionService 的便捷访问，该 ConversionService 配置了适用于大多数环境的转换器。 "converters" 设置属性以补充默认转换器。
+ * 此实现将创建一个 DefaultConversionService.子类可以重写 createConversionService() 以返回 GenericConversionService 其选择的实例。
+ * 与所有FactoryBean实现一样，此类适用于使用 Spring <beans> XML 配置 Spring 应用程序上下文时使用。使用@Configuration类配置容器时，只需实例化、配置并从@Bean方法返回相应的ConversionService对象即可。
+ *
  * A factory providing convenient access to a ConversionService configured with
  * converters appropriate for most environments. Set the
  * {@link #setConverters "converters"} property to supplement the default converters.

@@ -26,6 +26,10 @@ import org.springframework.core.convert.converter.ConverterRegistry;
 import org.springframework.lang.Nullable;
 
 /**
+ * ConversionService 接口的默认实现，适用于大部分条件下的转换工作。
+ * DefaultConversionService 是 ConversionService 的默认实现，
+ * 它继承 GenericConversionService，GenericConversionService 主要用于转换器的注册和调用，
+ * DefaultConversionService 则是为 ConversionService 体系提供一些默认的转换器。
  * A specialization of {@link GenericConversionService} configured by default
  * with converters appropriate for most environments.
  *
