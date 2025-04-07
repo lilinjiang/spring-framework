@@ -39,6 +39,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
+ * todo 预测：用于计算Condition的类
  * Internal class used to evaluate {@link Conditional} annotations.
  *
  * @author Phillip Webb
@@ -61,6 +62,7 @@ class ConditionEvaluator {
 
 
 	/**
+	 * todo 猜测应该是用于 判定@Conditional的暂时不细看
 	 * Determine if an item should be skipped based on {@code @Conditional} annotations.
 	 * The {@link ConfigurationPhase} will be deduced from the type of item (i.e. a
 	 * {@code @Configuration} class will be {@link ConfigurationPhase#PARSE_CONFIGURATION})

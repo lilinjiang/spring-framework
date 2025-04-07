@@ -24,6 +24,19 @@ import org.springframework.core.ResolvableType;
 import org.springframework.lang.Nullable;
 
 /**
+ * BeanFactory扩展由 Bean 工厂实现的接口，该 Bean 工厂可以枚举其所有 Bean 实例，而不是根据客户端的要求逐个尝试按名称查找 Bean。
+ * 预加载所有 Bean 定义的 BeanFactory 实现（例如基于 XML 的工厂）可以实现此接口。
+ *
+ *
+ * 如果这是一个 HierarchicalBeanFactory，则返回值 将不 考虑任何 BeanFactory 层次结构，而仅与当前工厂中定义的 bean 相关。
+ * BeanFactoryUtils 使用 helper 类也要考虑祖先工厂中的 bean。
+ *
+ * 此接口中的方法将仅遵循此工厂的 bean 定义。它们将忽略通过其他方式（如 的方法）org.springframework.beans.factory.config.ConfigurableBean Factory register Singleton注册的任何单例 bean，
+ * 但和 getBeansOfType 除外，它也会检查此类手动注册的getBeanNamesOfType单例。
+ * 当然，BeanFactory getBean也确实允许透明地访问这些特殊的豆子。但是，在典型场景中，所有 Bean 都将由外部 Bean 定义定义，因此大多数应用程序无需担心这种区分。
+ *
+ * 注意：除 和 containsBeanDefinition之外getBeanDefinitionCount，此接口中的方法不是为频繁调用而设计的。实施速度可能会很慢
+ *
  * Extension of the {@link BeanFactory} interface to be implemented by bean factories
  * that can enumerate all their bean instances, rather than attempting bean lookup
  * by name one by one as requested by clients. BeanFactory implementations that

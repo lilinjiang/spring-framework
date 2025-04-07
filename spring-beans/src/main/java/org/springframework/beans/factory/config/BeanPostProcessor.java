@@ -20,6 +20,10 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ * 工厂钩子，允许对新的 Bean 实例进行自定义修改，例如检查标记接口或用代理包装它们。
+ * ApplicationContexts 可以在其 Bean 定义中自动检测 BeanPostProcessor bean，并将它们应用于随后创建的任何 bean。普通 Bean 工厂允许以编程方式注册后处理器，适用于通过此工厂创建的所有 Bean。
+ * 通常，通过标记接口等填充 Bean 的后处理器将实现 postProcessBeforeInitialization，而使用代理包装 Bean 的后处理器通常会实现 postProcessAfterInitialization。
+ *
  * Factory hook that allows for custom modification of new bean instances,
  * e.g. checking for marker interfaces or wrapping them with proxies.
  *
@@ -43,6 +47,9 @@ import org.springframework.lang.Nullable;
 public interface BeanPostProcessor {
 
 	/**
+	 * 在任何 Bean 初始化回调（如 InitializingBean afterPropertiesSet 或自定义 init-method）之前，将此 BeanPostProcessor 应用于给定的新 Bean 实例。
+	 * Bean 将已填充了属性值。返回的 Bean 实例可能是原始实例的包装器。
+	 * 默认实现按原样返回给定 bean 的原样。
 	 * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
@@ -61,6 +68,13 @@ public interface BeanPostProcessor {
 	}
 
 	/**
+	 *
+	 * 在任何 Bean 初始化回调（如 InitializingBean afterPropertiesSet 或自定义 init-method）之后，将此 BeanPostProcessor 应用于给定的新 Bean 实例。
+	 * Bean 中已填充了属性值。返回的 Bean 实例可能是原始实例的包装器。
+	 * 如果是 FactoryBean，则将为 FactoryBean 实例和 FactoryBean 创建的对象调用此回调（从 Spring 2.0 开始）。
+	 * 后处理器可以通过相应的 bean instanceof FactoryBean 检查来决定是应用于 FactoryBean 还是创建的对象，或者两者兼而有之。
+	 * 与所有其他 BeanPostProcessor 回调相比，此回调也将在方法触发 InstantiationAwareBeanPostProcessor.postProcessBeforeInstantiation 短路后调用。
+	 * 默认实现按原样返回给定 bean 的。
 	 * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.

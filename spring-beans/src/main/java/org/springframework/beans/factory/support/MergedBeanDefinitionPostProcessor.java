@@ -19,6 +19,8 @@ package org.springframework.beans.factory.support;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
+ * MergedBeanDefinitionPostProcessor接口的postProcessMergedBeanDefinition是spring给我们提供的又一BeanPostProcessor扩展点，
+ * 用于处理合并后的BeanDefinition（RootBeanDefinition）。
  *
  * 运行时 合并 Bean 定义的后处理器回调接口。
  * BeanPostProcessor 的实现类 可以实现这个子接口，以便对 Spring BeanFactory 用来创建 Bean 实例的合并 Bean 定义（原始 Bean 定义的处理副本）进行后处理。

@@ -198,11 +198,12 @@ public class AnnotatedBeanDefinitionReader {
 	}
 
 	/**
+	 * 从给定的 Bean 类中注册一个 bean，从类声明的注释中派生其元数据。
 	 * Register a bean from the given bean class, deriving its metadata from
 	 * class-declared annotations.
 	 * @param annotatedClass the class of the bean
 	 * @param instanceSupplier a callback for creating an instance of the bean
-	 * (may be {@code null})
+	 * (may be {@code null}) 用于创建 Bean 实例的回调
 	 * @param name an explicit name for the bean
 	 * @param qualifiers specific qualifier annotations to consider, if any,
 	 * in addition to qualifiers at the bean class level

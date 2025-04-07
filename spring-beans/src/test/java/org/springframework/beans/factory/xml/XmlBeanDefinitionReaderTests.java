@@ -96,6 +96,9 @@ public class XmlBeanDefinitionReaderTests {
 		testBeanDefinitions(registry);
 	}
 
+	/**
+	 * todo 演示 xml 解析
+	 */
 	@Test
 	public void withFreshInputStream() {
 		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();

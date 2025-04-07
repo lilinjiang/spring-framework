@@ -1901,7 +1901,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			// @PostConstruct 在这里被执行
 			wrappedBean = applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
 		}
-		// <3> 激活用户自定义的 init 方法
+		// <3> 激活用户自定义的 init 方法 InitializingBean.afterPropertiesSet,@Bean initMethod ,XML init-method
 		try {
 			invokeInitMethods(beanName, wrappedBean, mbd);
 		}

@@ -26,7 +26,10 @@ import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.lang.Nullable;
 
 /**
- * 自动装配能力
+ * 它真正的作用在于整合其它框架：能让Spring管理的Bean去装配和填充那些不被Spring托管的Bean
+ * (wire and populate existing bean instances that Spring does not control the lifecycle of)[重要]
+ * https://www.jianshu.com/p/f9718de489f0
+ *
  *
  * Extension of the {@link org.springframework.beans.factory.BeanFactory}
  * interface to be implemented by bean factories that are capable of

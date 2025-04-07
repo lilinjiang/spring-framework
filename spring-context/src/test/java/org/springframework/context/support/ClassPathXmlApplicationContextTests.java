@@ -33,6 +33,7 @@ import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.BeanFactoryUtils;
 import org.springframework.beans.factory.CannotLoadBeanClassException;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.MessageSource;
@@ -72,10 +73,18 @@ public class ClassPathXmlApplicationContextTests {
 	private static final String TEST_PROPERTIES = "test.properties";
 
 
+	/**
+	 * todo 演示
+	 */
 	@Test
 	public void testSingleConfigLocation() {
+		DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
+		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(defaultListableBeanFactory);
+		reader.loadBeanDefinitions(FQ_SIMPLE_CONTEXT);
+
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(FQ_SIMPLE_CONTEXT);
 		assertTrue(ctx.containsBean("someMessageSource"));
+		ctx.getBean("");
 		ctx.close();
 	}
 

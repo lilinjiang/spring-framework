@@ -19,6 +19,8 @@ package org.springframework.core.type;
 import org.springframework.lang.Nullable;
 
 /**
+ * 类原信息接口
+ * 定义特定类的抽象元数据的接口，其形式不需要加载该类。
  * Interface that defines abstract metadata of a specific class,
  * in a form that does not require that class to be loaded yet.
  *
